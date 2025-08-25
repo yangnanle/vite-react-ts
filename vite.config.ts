@@ -1,6 +1,6 @@
-import { defineConfig, loadEnv } from 'vite'
-import react from '@vitejs/plugin-react'
-import { resolve } from 'path'
+import { defineConfig, loadEnv } from 'vite';
+import react from '@vitejs/plugin-react';
+import { resolve } from 'path';
 import legacy from '@vitejs/plugin-legacy';
 import viteCompression from 'vite-plugin-compression';
 
@@ -33,7 +33,7 @@ export default defineConfig(({ mode }) => {
                 {
                     find: '@components',
                     replacement: resolve(__dirname, './src/components'),
-                }
+                },
             ],
             extensions: ['.js', '.ts', '.jsx', '.tsx', '.json'], // 可省略后缀
         },
@@ -56,7 +56,7 @@ export default defineConfig(({ mode }) => {
                 '/api': {
                     target: 'http://localhost:8080',
                     changeOrigin: true,
-                    rewrite: path => path.replace(/^\/api/, ''),
+                    rewrite: (path) => path.replace(/^\/api/, ''),
                 },
             },
         },
@@ -71,10 +71,12 @@ export default defineConfig(({ mode }) => {
             rollupOptions: {
                 output: {
                     manualChunks: (id: string) => {
-                        if (id.includes('node_modules')) { // 拆分第三方包到 vendor.js
+                        if (id.includes('node_modules')) {
+                            // 拆分第三方包到 vendor.js
                             return 'vendor';
                         }
-                        if (id.includes('src/pages')) { // 拆分页面级代码
+                        if (id.includes('src/pages')) {
+                            // 拆分页面级代码
                             const chunkName = id.match(/src\/pages\/(.*)\//);
                             return chunkName ? `page-${chunkName[1]}` : 'common';
                         }
@@ -85,11 +87,9 @@ export default defineConfig(({ mode }) => {
                 },
                 external: [], // 忽略外部依赖
             },
-            terserOptions: {
-                compress: {
-                    drop_console: mode !== 'development', // 生产环境去除 console
-                    drop_debugger: true,
-                },
+            esbuild: {
+                keepNames: mode !== 'development',
+                drop: ['console', 'debugger'], // 删除 console.log
             },
         },
         assetsInclude: ['**/*.gltf'], // 额外静态资源类型

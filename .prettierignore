@@ -1,0 +1,6 @@
+.vscode
+.husky
+node_modules
+dist
+commitlint.config.mjs
+eslint.config.mjs

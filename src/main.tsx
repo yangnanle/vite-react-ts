@@ -1,4 +1,3 @@
-
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
@@ -8,9 +7,9 @@ import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <BrowserRouter>
-      <Router />
-    </BrowserRouter>
-  </StrictMode>,
-)
+    <StrictMode>
+        <BrowserRouter>
+            <Router />
+        </BrowserRouter>
+    </StrictMode>,
+);

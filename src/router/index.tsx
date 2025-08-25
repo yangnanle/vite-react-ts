@@ -1,4 +1,3 @@
-
 import { Routes, Route } from 'react-router-dom';
 import type { RouteConfig } from '@/types/global';
 import App from '../App';
@@ -7,7 +6,6 @@ import Home from '@/pages/Home';
 import NotFound from '@/pages/404';
 import UserPermission from '@/pages/Permission/UserPermission';
 import PrivacyPermission from '@/pages/Permission/PrivacyPermission';
-
 
 export const routes: RouteConfig[] = [
     {
@@ -37,9 +35,9 @@ export const routes: RouteConfig[] = [
                         path: '/permission/privacy',
                         name: '隐私权限',
                         element: <PrivacyPermission />,
-                    }
-                ]
-            }
+                    },
+                ],
+            },
         ],
     },
     {
@@ -51,7 +49,6 @@ export const routes: RouteConfig[] = [
         element: <NotFound />,
     },
 ];
-
 
 const renderRoutes = (routes: RouteConfig[]) => {
     return routes.map(({ path, element, children }, idx) => (
